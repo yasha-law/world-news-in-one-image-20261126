@@ -1,0 +1,28 @@
+name: verify-entry
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Run twice and compare
+        run: |
+          mkdir -p /tmp/run1 /tmp/run2
+          (cd /tmp/run1 && python "$GITHUB_WORKSPACE/main.py")
+          (cd /tmp/run2 && python "$GITHUB_WORKSPACE/main.py")
+          cmp /tmp/run1/entry.png /tmp/run2/entry.png
+          python - <<'EOF'
+          import os, struct
+          p = "/tmp/run1/entry.png"
+          size = os.path.getsize(p)
+          assert size <= 1048576, f"too big: {size}"
+          with open(p, "rb") as f:
+              data = f.read(33)
+          assert data[:8] == b"\x89PNG\r\n\x1a\n", "not a PNG"
+          w, h = struct.unpack(">II", data[16:24])
+          assert w <= 1024 and h <= 1024, f"dimensions {w}x{h}"
+          print(f"OK: {w}x{h}, {size} bytes, deterministic")
+          EOF
