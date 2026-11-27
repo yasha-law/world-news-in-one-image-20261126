@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""make.fun bounty draft v1: Sum up 26 November 2026 world news in one image.
+"""make.fun bounty final: Sum up 26 November 2026 world news in one image.
 
 Pure Python standard library only (os, struct, zlib): no Pillow, no font
 files, no network. Text is drawn with an embedded 8x8 bitmap font (see
@@ -9,9 +9,8 @@ Deterministic: headlines are baked in below, no clocks, no randomness.
 Writes /output/entry.png (or ./entry.png when /output is not writable).
 1024x1024 PNG. Run twice -> identical bytes.
 
-DRAFT ONLY - headlines are the morning of 26 Nov 2026 (checked ~10:50 CST).
-Before submitting, refresh with the full day's news and re-run.
-See README.md in this folder for the submission blockers (GitHub repo, wallet).
+FINAL - headlines are the full day of 26 Nov 2026 (UTC), checked 27 Nov
+2026 against Reuters, AP, AFP, BBC and ONS reporting. See README.md.
 """
 import os
 import struct
@@ -20,22 +19,22 @@ import zlib
 W, H = 1024, 1024
 
 STORIES = [
-    ("TRADE", "US proposes new tariffs",
-     "Tariffs aimed at 14 economies over factory overcapacity; up to 25% on Indian goods."),
-    ("USA", "Thanksgiving parade postponed",
-     "Macy's 100th parade in New York moved to Saturday as a major storm hits the coast."),
-    ("EGYPT", "Cairo fuel-truck fire kills 30+",
-     "A fuel vehicle caught fire on Cairo's ring road; dozens killed and injured."),
-    ("TECH", "Huawei found guilty in US court",
-     "A US jury found the Chinese tech giant guilty of conspiracy to steal trade secrets."),
-    ("ISRAEL", "Judges: drop Netanyahu case",
-     "Israeli judges recommended prosecutors drop the most serious bribery case."),
-    ("SPACE", "China welcomes foreign astronaut",
-     "China to host its first foreign astronaut aboard the Tiangong space station."),
-    ("KOREA", "Kim: widen nuclear weapons use",
-     "North Korea's Kim called for wider deployment of tactical nuclear weapons."),
-    ("GULF", "Tankers hit in Strait of Hormuz",
-     "Iran said two oil tankers were hit by naval mines and caught fire; Houthis hit Riyadh."),
+    ("TRADE", "Trump tariff blitz",
+     "US proposes tariffs on 14 economies; up to 25% on Indian goods."),
+    ("USA", "Parade postponed",
+     "Macy's 100th parade in New York moves to Saturday as a major storm hits the coast."),
+    ("EGYPT", "Cairo tanker fire kills 31",
+     "Fuel truck overturns and burns on Cairo ring road; 31 killed, 21 hurt."),
+    ("GULF", "Drone attack in Kuwait",
+     "Iranian drones hit Kuwait; two Italian technicians killed, four people hurt."),
+    ("GAZA", "Nine killed in Gaza",
+     "Israeli strikes kill nine, including a Hamas-appointed minister, on night three."),
+    ("UKRAINE", "Missiles hit Kyiv",
+     "Russian ballistic missiles hit Kyiv, wounding seven; grain ships damaged near Odesa."),
+    ("HORMUZ", "Tankers hit by mines",
+     "Two oil tankers hit by sea mines near Oman; Houthis strike two Saudi ports."),
+    ("EUROPE", "New ECB chief picked",
+     "De Cos of Spain picked to lead the ECB, succeeding Lagarde in February."),
 ]
 
 COLORS = ["#b91c1c", "#1d4ed8", "#b45309", "#0f766e",
@@ -264,7 +263,7 @@ def main():
             img.text(x + 18, body_y + j * 20, line, 2, BODY)
 
     # Footer (wraps to two lines at this scale)
-    foot = "Sources: Reuters, AP/AFP, SCMP, Economic Times - morning of 26 Nov 2026."
+    foot = "Sources: Reuters, AP, AFP, BBC, ONS - full day of 26 Nov 2026."
     for j, line in enumerate(wrap(foot, 2, W - 64)):
         img.text(32, 972 + j * 22, line, 2, FOOT)
 

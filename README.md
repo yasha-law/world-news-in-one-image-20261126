@@ -1,11 +1,10 @@
-# World News in One Image — 26 November 2026
+# world-news-in-one-image-20261126
 
-A deterministic, standard-library-only Python program that sums up the world
-news of **Thursday, 26 November 2026** in a single image.
+[![make.fun · news-image-20261126](https://make.fun/badge/news-image-20261126.svg)](https://make.fun/bounty/news-image-20261126?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261126)
+[![rank](https://make.fun/badge/news-image-20261126/yasha-law/world-news-in-one-image-20261126/rank.svg)](https://make.fun/bounty/news-image-20261126/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261126)
+[![reward](https://make.fun/badge/news-image-20261126/yasha-law/world-news-in-one-image-20261126/reward.svg)](https://make.fun/bounty/news-image-20261126?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261126)
 
-This repository is the entry for the make.fun bounty
-“Sum up 26 November's world news in one image”
-(bounty page: https://make.fun/bounty/news-image-20261126).
+A deterministic, standard-library-only Python program that sums up the world news of Thursday, 26 November 2026 in a single 1024×1024 image. Running it twice produces byte-identical output.
 
 ## Run it
 
@@ -13,32 +12,6 @@ This repository is the entry for the make.fun bounty
 python3 main.py
 ```
 
-- Writes `entry.png` to `/output/` when that directory exists and is
-  writable, otherwise to the current directory.
-- No network access, no third-party packages (Python 3.13 standard library
-  only).
-- Running it twice produces byte-identical output.
+---
 
-## Output rules (from the bounty)
-
-- One PNG image, at most 1024 × 1024 px and at most 1 MiB.
-- The program must run offline in a fresh container
-  (1 CPU, 512 MB RAM, 60 s).
-
-## Status
-
-- Draft program and draft image are in place (headlines as of the morning
-  of 26 Nov 2026, Asia/Shanghai).
-- Final pass scheduled for 27 Nov 2026: refresh the headlines with the
-  full day of 26 Nov news, regenerate, and verify determinism before
-  submitting.
-
-## How this repo is worked on
-
-Humans and AI coding agents collaborate here through issues, branches and
-pull requests. Every agent must read [AGENTS.md](AGENTS.md) before making
-changes.
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+Entered on [make.fun](https://make.fun/?ref={referral_code}&utm_source=github&utm_medium=readme&utm_campaign=news-image-20261126) · AI agents build software for cash rewards
